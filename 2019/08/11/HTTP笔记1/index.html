@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="HTTP,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Http协议（一）web 及网络基础 《图解HTTP协议》的笔记  1. web及网络基础123graph LR   id1(客户端)--通过指定的访问地址获取或上传服务器资源文件等信息--&amp;gt;id2(服务端)   id2--使用HTTP协议的通信--&amp;gt;id1  HTTP（HyperText Transfer Protocol, 超文本传输协议） 1.1 http 及web 的发展 19">
+<meta name="keywords" content="HTTP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP笔记1">
+<meta property="og:url" content="http://yoursite.com/2019/08/11/HTTP笔记1/index.html">
+<meta property="og:site_name" content="自己的路，自己走">
+<meta property="og:description" content="Http协议（一）web 及网络基础 《图解HTTP协议》的笔记  1. web及网络基础123graph LR   id1(客户端)--通过指定的访问地址获取或上传服务器资源文件等信息--&amp;gt;id2(服务端)   id2--使用HTTP协议的通信--&amp;gt;id1  HTTP（HyperText Transfer Protocol, 超文本传输协议） 1.1 http 及web 的发展 19">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/08/11/HTTP笔记1/1565441223870.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/11/HTTP笔记1/1565441336432.png">
+<meta property="og:image" content="c:%5CUsers%5C%E6%9D%A8%E8%8D%A3%E6%A0%8B%5CDesktop%5C%E9%9A%8F%E7%AC%94%5C%E7%AC%94%E8%AE%B0%5CHTTP%5CHTTP%E5%8D%8F%E8%AE%AE%5C1565441223870.png">
+<meta property="og:image" content="c:%5CUsers%5C%E6%9D%A8%E8%8D%A3%E6%A0%8B%5CDesktop%5C%E9%9A%8F%E7%AC%94%5C%E7%AC%94%E8%AE%B0%5CHTTP%5CHTTP%E5%8D%8F%E8%AE%AE%5C1565441336432.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/11/HTTP笔记1/1565500025099.png">
+<meta property="og:image" content="c:%5CUsers%5C%E6%9D%A8%E8%8D%A3%E6%A0%8B%5CDesktop%5C%E9%9A%8F%E7%AC%94%5C%E7%AC%94%E8%AE%B0%5CHTTP%5CHTTP%E5%8D%8F%E8%AE%AE%5C1565500025099.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/11/HTTP笔记1/1565521271682.png">
+<meta property="og:image" content="c:%5CUsers%5C%E6%9D%A8%E8%8D%A3%E6%A0%8B%5CDesktop%5C%E9%9A%8F%E7%AC%94%5C%E7%AC%94%E8%AE%B0%5CHTTP%5CHTTP%E5%8D%8F%E8%AE%AE%5C1565521271682.png">
+<meta property="og:updated_time" content="2019-08-11T11:23:42.870Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTTP笔记1">
+<meta name="twitter:description" content="Http协议（一）web 及网络基础 《图解HTTP协议》的笔记  1. web及网络基础123graph LR   id1(客户端)--通过指定的访问地址获取或上传服务器资源文件等信息--&amp;gt;id2(服务端)   id2--使用HTTP协议的通信--&amp;gt;id1  HTTP（HyperText Transfer Protocol, 超文本传输协议） 1.1 http 及web 的发展 19">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/11/HTTP笔记1/1565441223870.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/11/HTTP笔记1/">
+
+
+
+
+
+  <title>HTTP笔记1 | 自己的路，自己走</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4d9af0340451227520758d3a715d6077";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">自己的路，自己走</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/11/HTTP笔记1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Yangrd">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="自己的路，自己走">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">HTTP笔记1</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-11T19:19:26+08:00">
+                2019-08-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Http协议（一）web-及网络基础"><a href="#Http协议（一）web-及网络基础" class="headerlink" title="Http协议（一）web 及网络基础"></a>Http协议（一）web 及网络基础</h1><blockquote>
+<p>《图解HTTP协议》的笔记</p>
+</blockquote>
+<h2 id="1-web及网络基础"><a href="#1-web及网络基础" class="headerlink" title="1. web及网络基础"></a>1. web及网络基础</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">   id1(客户端)--通过指定的访问地址获取或上传服务器资源文件等信息--&gt;id2(服务端)</span><br><span class="line">   id2--使用HTTP协议的通信--&gt;id1</span><br></pre></td></tr></table></figure>
+
+<p>HTTP（HyperText Transfer Protocol, 超文本传输协议）</p>
+<h3 id="1-1-http-及web-的发展"><a href="#1-1-http-及web-的发展" class="headerlink" title="1.1 http 及web 的发展"></a>1.1 http 及web 的发展</h3><ul>
+<li>1989 年 3 月， HTTP诞生</li>
+<li>3项WWW构建技术：把 SGML（Standard Generalized Mardup Language，标准通用标记语言）作为页面的文本标记语言的HTML（HyperText Markup Language，超文本标记语言）；作为文档传递协议的HTTP；指定文档所在地址的URL（Uniform Resource Locator，统一资源定位符）。</li>
+</ul>
+<h4 id="web-的发展"><a href="#web-的发展" class="headerlink" title="web 的发展"></a>web 的发展</h4><ul>
+<li>1990 年 11 月，CERN 成功研发了世界上第一台 Web 服务器 和 Web 浏览器。</li>
+<li>1990 年，对HTML1.0 草案进行了讨论，这个草案被直接废弃。 </li>
+<li>1993 年 1 月，NCSA（National Center for Supercomputer Applications，美国国家超级计算机应用中心）研发的 Mosaic 问世。</li>
+<li>1993 年秋，Mosaic 的 Windows 版和 Macintosh 版面世。</li>
+<li>1994 年 12 月，网景通信公司发布了Netscape Navigator 1.0.</li>
+<li>1995 年， 微软公司发布了 IE 1.0 和 2.0.  Apache 发布了Apache 0.2.  HTML 发布了2.0版本。</li>
+<li>1995 年左右，微软和网景公司的竞争，并对各自的浏览器进行扩展，导致现在的浏览器兼容问题。</li>
+<li>2000 年前后，网景公司衰落，浏览器战争告一段落。</li>
+<li>2004 年， Mozilla 基金会发布了 Firefox 浏览器，第二次浏览器战争随机爆发。</li>
+</ul>
+<h4 id="http-的发展"><a href="#http-的发展" class="headerlink" title="http 的发展"></a>http 的发展</h4><h5 id="HTTP-0-9"><a href="#HTTP-0-9" class="headerlink" title="HTTP/0.9"></a>HTTP/0.9</h5><p>HTTP 于 1990 年问世。 这时的 HTTP 其实含有 HTTP 1.0 之前版本的意思，因此被称为 HTTP/0.9.</p>
+<h5 id="HTTP-1-0"><a href="#HTTP-1-0" class="headerlink" title="HTTP/1.0"></a>HTTP/1.0</h5><p>HTTP 正式作为标准被公布在 1996 年 5月， 版本被命名为 HTTP/1.0，并记载于 RFC1945</p>
+<h5 id="HTTP-1-1"><a href="#HTTP-1-1" class="headerlink" title="HTTP/1.1"></a>HTTP/1.1</h5><p>1997 年 1 月 公布。是目前主流的 HTTP 协议版本。当初版本为RFC2068，之后修订版为RFC2616.</p>
+<h5 id="HTTP-2-0"><a href="#HTTP-2-0" class="headerlink" title="HTTP/2.0"></a>HTTP/2.0</h5><blockquote>
+<p>来自百度百科</p>
+</blockquote>
+<p>HTTP/2 （原名HTTP/2.0）即<a href="https://baike.baidu.com/item/超文本" target="_blank" rel="noopener">超文本</a><a href="https://baike.baidu.com/item/传输协议" target="_blank" rel="noopener">传输协议</a> 2.0，是下一代<a href="https://baike.baidu.com/item/HTTP协议" target="_blank" rel="noopener">HTTP协议</a>。是由<a href="https://baike.baidu.com/item/互联网工程任务组/707674" target="_blank" rel="noopener">互联网工程任务组</a>（<a href="https://baike.baidu.com/item/IETF" target="_blank" rel="noopener">IETF</a>）的Hypertext Transfer Protocol Bis (httpbis)工作小组进行开发。是自1999年<a href="https://baike.baidu.com/item/http" target="_blank" rel="noopener">http</a>1.1发布后的首个更新。HTTP<br>2.0在2013年8月进行首次合作共事性测试。在开放互联网上HTTP 2.0将只用于https://网址，而<br>http://网址将继续使用HTTP/1，目的是在开放互联网上增加使用加密技术，以提供强有力的保护去遏制主动攻击。DANE RFC6698允许<a href="https://baike.baidu.com/item/域名/86062" target="_blank" rel="noopener">域名</a>管理员不通过第三方<a href="https://baike.baidu.com/item/CA" target="_blank" rel="noopener">CA</a>自行发行证书。</p>
+<h3 id="1-2-TCP-IP"><a href="#1-2-TCP-IP" class="headerlink" title="1.2 TCP/IP"></a>1.2 TCP/IP</h3><p>一般来说，TCP/IP 协议指的是在 IP 协议的通信过程中，使用到的协议族的统称。</p>
+<h4 id="1-2-1-TCP-IP-的分层"><a href="#1-2-1-TCP-IP-的分层" class="headerlink" title="1.2.1 TCP/IP 的分层"></a>1.2.1 TCP/IP 的分层</h4><p>按层次分（4层）：应用层，传输层，网络层 和 数据链路层。</p>
+<h5 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h5><p>决定向用户提供应用服务时的通信的活动。</p>
+<p>该层的协议有：FTP（File Tranfer Protocol，文件传输协议）、DNS（Domain Name System，域名系统）、HTTP协议。</p>
+<h5 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h5><p>传输层对上次应用层，提供处于网络连接中的两台计算机之间的数据传输。</p>
+<p>该层协议：TCP（Transmission Control Protocol，传输控制协议）和 UDP（User  Data Protocol， 用户数据报协议）。</p>
+<h5 id="网络层（又名网络互连层）"><a href="#网络层（又名网络互连层）" class="headerlink" title="网络层（又名网络互连层）"></a>网络层（又名网络互连层）</h5><p>网络层用来处理在网络上流动的数据包。数据包是网络传输的最小数据单位。</p>
+<p>选择传输路线。</p>
+<h5 id="链路层（数据链路层-网络接口层）"><a href="#链路层（数据链路层-网络接口层）" class="headerlink" title="链路层（数据链路层/网络接口层）"></a>链路层（数据链路层/网络接口层）</h5><p>用来处理连接网络的硬件部分。包括控制操作系统、硬件的设备驱动、NIC（Network Interface Card，网络适配器，即网卡），及光纤等物理可见部分。硬件上的范畴均在链路层的作用范围之内。</p>
+<img src="/2019/08/11/HTTP笔记1/1565441223870.png" title="网络分层">
+
+<img src="/2019/08/11/HTTP笔记1/1565441336432.png" title="报文封装">
+
+<p><img src="C:%5CUsers%5C%E6%9D%A8%E8%8D%A3%E6%A0%8B%5CDesktop%5C%E9%9A%8F%E7%AC%94%5C%E7%AC%94%E8%AE%B0%5CHTTP%5CHTTP%E5%8D%8F%E8%AE%AE%5C1565441223870.png" alt="1565441223870"></p>
+<p><img src="C:%5CUsers%5C%E6%9D%A8%E8%8D%A3%E6%A0%8B%5CDesktop%5C%E9%9A%8F%E7%AC%94%5C%E7%AC%94%E8%AE%B0%5CHTTP%5CHTTP%E5%8D%8F%E8%AE%AE%5C1565441336432.png" alt="1565441336432"></p>
+<h4 id="1-2-2-IP、TCP-和-DNS"><a href="#1-2-2-IP、TCP-和-DNS" class="headerlink" title="1.2.2 IP、TCP 和 DNS"></a>1.2.2 IP、TCP 和 DNS</h4><h5 id="IP-协议（Internet-Protocol）"><a href="#IP-协议（Internet-Protocol）" class="headerlink" title="IP 协议（Internet Protocol）"></a>IP 协议（Internet Protocol）</h5><p>IP协议位于网络层。</p>
+<p>IP协议的作用是把各种数据包传送给对方。其中两个重要条件是：IP地址和MAC地址（Media Access Control Address）。</p>
+<p>IP地址指明了节点被分配到的地址。MAC地址是网卡所属的固定地址。IP地址可以和MAC地址进行配对。</p>
+<h5 id="ARP协议"><a href="#ARP协议" class="headerlink" title="ARP协议"></a>ARP协议</h5><p>用以解析地址的协议。根据通信方的 IP 地址可以反查出对应的MAC地址。</p>
+<h5 id="路由选择（routing）"><a href="#路由选择（routing）" class="headerlink" title="路由选择（routing）"></a>路由选择（routing）</h5><p>到达目标前，只能获取粗略的路线。类似快递送货，先到集散中心，再区域分发。</p>
+<h5 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h5><p>TCP位于传输层，提供可靠的字节流服务。</p>
+<p>三次握手策略：</p>
+<img src="/2019/08/11/HTTP笔记1/1565500025099.png" title="三次握手">
+
+<p><img src="C:%5CUsers%5C%E6%9D%A8%E8%8D%A3%E6%A0%8B%5CDesktop%5C%E9%9A%8F%E7%AC%94%5C%E7%AC%94%E8%AE%B0%5CHTTP%5CHTTP%E5%8D%8F%E8%AE%AE%5C1565500025099.png" alt="1565500025099"></p>
+<h5 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h5><p>位于应用层，提供域名到 IP 地址之间的解析服务。</p>
+<p>DNS协议提供通过域名查找 IP 地址， 或逆向从 IP 地址反查域名。</p>
+<h4 id="URI-和-URL"><a href="#URI-和-URL" class="headerlink" title="URI 和 URL"></a>URI 和 URL</h4><ul>
+<li>URI（统一资源标识符）</li>
+<li>URL（Uniform Resource Locator， 统一资源定位符）</li>
+</ul>
+<p>URL 就是使用Web浏览器访问Web页面时需要输入的网页地址</p>
+<h5 id="URI"><a href="#URI" class="headerlink" title="URI"></a>URI</h5><p>Uniform Resource Identifier 的缩写，RFC2396 对这三个单词定义如下：</p>
+<p>Uniform：规定统一的格式可方便处理多种不同类型的资源。</p>
+<p>Resource：可标识的任何东西</p>
+<p>Identifier：表示可标识的对象。也称标识符。</p>
+<p><strong>URI 就是由某个协议方案表示的资源的定位标识符。协议方案是指访问资源所使用的协议类型名称。</strong></p>
+<blockquote>
+<p>标准的协议方案有 30 种左右，由隶属于国际互联网资源管理的非盈利社团 ICANN （Internet Corporation for Assigned Names and Numbers，互联网名称和数字地址分配机构） 的 IANA （Internet Assigned Numbers Authority，互联网号码分配局）管理颁布。</p>
+<ul>
+<li>IANA - Uniform Resource Identifier （URI）SCHEMES（统一资源标识符方案）</li>
+</ul>
+</blockquote>
+<p>URI 用字符串标识某一互联网资源，URL表示资源的地址。URL是URI的子集。</p>
+<p>绝对URI的格式：</p>
+<img src="/2019/08/11/HTTP笔记1/1565521271682.png" title="绝对URI格式">
+
+<p><img src="C:%5CUsers%5C%E6%9D%A8%E8%8D%A3%E6%A0%8B%5CDesktop%5C%E9%9A%8F%E7%AC%94%5C%E7%AC%94%E8%AE%B0%5CHTTP%5CHTTP%E5%8D%8F%E8%AE%AE%5C1565521271682.png" alt="1565521271682"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HTTP/" rel="tag"># HTTP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/10/hexo手册/" rel="next" title="hexo手册">
+                <i class="fa fa-chevron-left"></i> hexo手册
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/avatar.png" alt="Yangrd">
+            
+              <p class="site-author-name" itemprop="name">Yangrd</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Http协议（一）web-及网络基础"><span class="nav-number">1.</span> <span class="nav-text">Http协议（一）web 及网络基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-web及网络基础"><span class="nav-number">1.1.</span> <span class="nav-text">1. web及网络基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-http-及web-的发展"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 http 及web 的发展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#web-的发展"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">web 的发展</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#http-的发展"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">http 的发展</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTP-0-9"><span class="nav-number">1.1.1.2.1.</span> <span class="nav-text">HTTP/0.9</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTP-1-0"><span class="nav-number">1.1.1.2.2.</span> <span class="nav-text">HTTP/1.0</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTP-1-1"><span class="nav-number">1.1.1.2.3.</span> <span class="nav-text">HTTP/1.1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTP-2-0"><span class="nav-number">1.1.1.2.4.</span> <span class="nav-text">HTTP/2.0</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-TCP-IP"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 TCP/IP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-1-TCP-IP-的分层"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">1.2.1 TCP/IP 的分层</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#应用层"><span class="nav-number">1.1.2.1.1.</span> <span class="nav-text">应用层</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#传输层"><span class="nav-number">1.1.2.1.2.</span> <span class="nav-text">传输层</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#网络层（又名网络互连层）"><span class="nav-number">1.1.2.1.3.</span> <span class="nav-text">网络层（又名网络互连层）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#链路层（数据链路层-网络接口层）"><span class="nav-number">1.1.2.1.4.</span> <span class="nav-text">链路层（数据链路层/网络接口层）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-2-IP、TCP-和-DNS"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">1.2.2 IP、TCP 和 DNS</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#IP-协议（Internet-Protocol）"><span class="nav-number">1.1.2.2.1.</span> <span class="nav-text">IP 协议（Internet Protocol）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ARP协议"><span class="nav-number">1.1.2.2.2.</span> <span class="nav-text">ARP协议</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#路由选择（routing）"><span class="nav-number">1.1.2.2.3.</span> <span class="nav-text">路由选择（routing）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#TCP协议"><span class="nav-number">1.1.2.2.4.</span> <span class="nav-text">TCP协议</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DNS"><span class="nav-number">1.1.2.2.5.</span> <span class="nav-text">DNS</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#URI-和-URL"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">URI 和 URL</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#URI"><span class="nav-number">1.1.2.3.1.</span> <span class="nav-text">URI</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yangrd</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
